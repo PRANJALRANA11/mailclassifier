@@ -1,9 +1,9 @@
-'use client';
+"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ReactNode } from 'react';
-import { SessionProvider } from 'next-auth/react';
+import { ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 
 interface LayoutProps {
   children: ReactNode;
@@ -21,13 +21,8 @@ export default function RootLayout({ children, session }: LayoutProps) {
   return (
     <html lang="en">
       <body className="dark">
-        <SessionProvider session={session}>
-          {children}
-        </SessionProvider>
+        <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>
   );
 }
-
-
-

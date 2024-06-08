@@ -1,7 +1,9 @@
+// Get the list of emails from the user's Gmail account
+// API flow Get all emails ----> Decode and process the body of each message -----> Return the list of emails
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -24,8 +26,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const allMessages: any[] = [];
-
-    const response:any = await gmail.users.messages.list({
+    // Get the list of messages
+    const response: any = await gmail.users.messages.list({
       userId: "me",
       maxResults: maxMails,
     });
@@ -33,7 +35,7 @@ export async function POST(req: NextRequest) {
     if (response.data.messages) {
       // Fetch details for each message
       const messages = await Promise.all(
-        response.data.messages.map(async (message:any) => {
+        response.data.messages.map(async (message: any) => {
           const msg: any = await gmail.users.messages.get({
             userId: "me",
             id: message.id,
@@ -50,7 +52,9 @@ export async function POST(req: NextRequest) {
 
         // Extract sender's name from headers
         const headers = message.payload.headers;
-        const fromHeader = headers.find((header: any) => header.name === "From");
+        const fromHeader = headers.find(
+          (header: any) => header.name === "From"
+        );
         if (fromHeader) {
           const match = fromHeader.value.match(/(.*)<.*>/);
           senderName = match ? match[1].trim() : fromHeader.value;
@@ -62,7 +66,9 @@ export async function POST(req: NextRequest) {
 
           if (body.data) {
             // Decode the body if it's base64 encoded
-            const decodedBody = Buffer.from(body.data, "base64").toString("utf-8");
+            const decodedBody = Buffer.from(body.data, "base64").toString(
+              "utf-8"
+            );
             return {
               id: message.id,
               snippet: message.snippet,

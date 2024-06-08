@@ -1,11 +1,11 @@
-
+// Classification Email API
 // API flow emailArray ----> Model Classification -----> Pushed to classifed labeled Array
 import { NextRequest, NextResponse } from "next/server";
 import { ChatOpenAI } from "@langchain/openai";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email,keys } = await req.json();
+    const { email, keys } = await req.json();
     const categories = {
       important:
         "Important: Emails that are personal or work-related and require immediate attention.",
@@ -17,18 +17,19 @@ export async function POST(req: NextRequest) {
       spam: "Spam: Unwanted or unsolicited emails.",
       general: "General: If none of the above are matched, use General.",
     };
-    
-    console.log("email",email);
+
+    console.log("email", email);
     let classified_labels = [];
     for (let emailItems of email) {
       const model = new ChatOpenAI({
         apiKey: process.env.OPENAI_API_KEY,
         modelName: "gpt-4o",
       });
-    //   To extract the body of mail which don't consist snippet and vice-versa
+      //   To extract the body of mail which don't consist snippet and vice-versa
       if (
         emailItems.snippet.replace(/[\u200B-\u200D\uFEFF]/g, "").trim() == ""
       ) {
+        //  Removing the unwanted characters from the body of the email
         const text = emailItems.body
           .replace(/\\r\\n/g, " ")
           .replace(/https?:\/\/[^\s]+/g, "")
