@@ -6,7 +6,7 @@ Mailclassifier helps you to classify your mails into categories without any hass
 
 ## Demo
 
-https://github.com/PRANJALRANA11/datamate/assets/129268721/29098247-4e6a-4d56-8f35-0f70eac88411
+https://github.com/PRANJALRANA11/mailclassifier/assets/129268721/d9812493-b2e7-4e7f-a864-fb0c2f8e656d
 
 
 Note: Demo above is `GPT-4O`.  Model can hallucinates answer 
@@ -14,6 +14,10 @@ Note: Demo above is `GPT-4O`.  Model can hallucinates answer
 
 
 ### ⇒ *[Try it now! Hosted public environment is live! (Click Here)](https://mailclassifier.vercel.app/)* ⇐
+
+
+
+
 
 
 
