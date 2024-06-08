@@ -48,7 +48,21 @@ npm install
 ```bash
 npm run dev
 ```
+
 Also with docker.
+
+### 1. Pull the Docker Image
+
+```sh
+docker pull pranjal12346/mailclassifier
+```
+
+### 2. Run the container
+
+```sh
+docker run -d --name <container-name> -p 3000:3000 pranjal12346/mailclassifier
+```
+
 
 ## Contributions
 

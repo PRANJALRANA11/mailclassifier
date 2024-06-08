@@ -35,12 +35,12 @@ export async function POST(req: NextRequest) {
           .replace(/https?:\/\/[^\s]+/g, "")
           .replace(/<[^>]+>/g, "")
           .trim();
-        const prompt = `Classify the following text into one of the categories: ${categories.important},${categories.general},${categories.marketing},${categories.promotions},${categories.social},${categories.spam}.\n\nText: "${text}"\n\nCategory:`;
+        const prompt = `Classify the following text into one of the categories: ${categories.important},${categories.general},${categories.marketing},${categories.promotions},${categories.social},${categories.spam}.\n\nText: "${text}"\n\n Example Response ---> Category`;
         let response = await model.invoke(prompt);
         classified_labels.push(response.content);
         console.log(response);
       } else {
-        const prompt = `Classify the following text into one of the categories: ${categories.important},${categories.general},${categories.marketing},${categories.promotions},${categories.social},${categories.spam}.\n\nText: "${emailItems.snippet}"\n\nCategory:`;
+        const prompt = `Classify the following text into one of the categories: ${categories.important},${categories.general},${categories.marketing},${categories.promotions},${categories.social},${categories.spam}.\n\nText: "${emailItems.snippet}"\n\nExample Response ---> Category`;
         let response = await model.invoke(prompt);
         classified_labels.push(response.content);
         console.log(response);

@@ -94,7 +94,7 @@ const Inbox: React.FC = () => {
 
       const newLabels = { ...labels };
       emailsToClassify.forEach((email, index) => {
-        newLabels[email.id] = classifiedLabels[index];
+        newLabels[email.id] = classifiedLabels[index].split(" ")[0].replace(":", "");
       });
       setLabels(newLabels);
 
