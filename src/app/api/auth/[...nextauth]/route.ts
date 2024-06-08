@@ -16,7 +16,7 @@ const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account, profile }:{token:any, account:any, profile:any}) {
+    async jwt({ token, account, profile }:{token:any, account:any, profile?:any}) {
       if (account) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;

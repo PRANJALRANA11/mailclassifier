@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   try {
     const allMessages: any[] = [];
 
-    const response = await gmail.users.messages.list({
+    const response:any = await gmail.users.messages.list({
       userId: "me",
       maxResults: maxMails,
     });
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     if (response.data.messages) {
       // Fetch details for each message
       const messages = await Promise.all(
-        response.data.messages.map(async (message) => {
+        response.data.messages.map(async (message:any) => {
           const msg: any = await gmail.users.messages.get({
             userId: "me",
             id: message.id,
