@@ -1,5 +1,6 @@
 // Classification Email API
 // API flow emailArray ----> Model Classification -----> Pushed to classifed labeled Array
+export const maxDuration = 60; 
 import { NextRequest, NextResponse } from "next/server";
 import { ChatOpenAI } from "@langchain/openai";
 
